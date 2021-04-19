@@ -21,7 +21,7 @@ $git push
 ```
 
 ## Creazione di un test
-Il file *tests/test_data_and_model.py* contiene un esempio di test scritto con pytest. Per far girare questi i test in local usa il comando
+Il file *tests/test_data_and_model.py* contiene un esempio di test scritto con pytest. Per far girare questi i test in locale usa il comando
 ```sh
 $python -m pytest
 ```
@@ -45,7 +45,7 @@ Prova a scrivere un altro test che importi il modello serializzato e:
 </details>
 
 ## Creazione di una GitHub Action
-Crea una cartella chiamata '.github' all'interno della directory principale. All'interno di questa cartella crea una cartella chiamata 'workflow'.
+Crea una cartella chiamata '.github' all'interno della directory principale. All'interno di questa cartella crea una cartella chiamata 'workflows'.
 
 In quest'ultima crea un file 'CI.yaml' e copia/incolla il seguente codice
 ```yaml
@@ -81,7 +81,7 @@ jobs:
 ```
 Effettua un commit e un push e segui la action direttamente su GitHub (repository --> tab 'actions')
 
-## Ricerca iperparametri con mlflow
+## Grid-search di iperparametri con mlflow
 Modifica lo script ./experiments/run_grid_search.py cambiando lo spazio di ricerca (aggiungendo/togliendo iperparametri e possibili valori).
 Una volta arricchito la spazio di ricerca fai girare lo script  
 ```sh
@@ -92,7 +92,7 @@ Quale combinazione di iperparametri ha dato l'F1 piu' alto? Fai girare il seguen
 $mlflow ui
 ```
 Per visualizzare gli esperimenti effettuati fino ad ora puoi collegarti via browser all'indizzo (localhost:5000). 
-La barra 'search runs' permette di effettuare ricerche tra i vari esperimenti usando un linquaggio di query
+La barra 'search runs' permette di effettuare ricerche tra i vari esperimenti usando un linquaggio di query semplificato. Es:
 ```
 metrics.precision > 0.6 and params.depth='3'
 ```
