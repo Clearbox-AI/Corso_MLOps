@@ -21,7 +21,7 @@ $git push
 ```
 
 ## Creazione di un test
-Il file *tests/test_data_and_model.py* contiene un esempio di test scritto con pytest. Per far girare questi i test in locale usa il comando
+Il file *test/test_data_and_model.py* contiene un esempio di test scritto con pytest. Per far girare questi test in locale usa il comando
 ```sh
 $python -m pytest
 ```
