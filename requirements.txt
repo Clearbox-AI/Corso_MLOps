@@ -4,3 +4,4 @@ pytest
 pandas
 mlflow
 fastapi
+uvicorn
