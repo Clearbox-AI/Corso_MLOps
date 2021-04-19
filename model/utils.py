@@ -1,9 +1,9 @@
-from skl2onnx.common.data_types import FloatTensorType, Int64TensorType, StringTensorType
 from sklearn.metrics import classification_report
 from mlflow.models.signature import infer_signature
 import mlflow
 from data.datamanager import data_loader
-from skl2onnx import convert_sklearn
+#from skl2onnx import convert_sklearn
+#from skl2onnx.common.data_types import FloatTensorType, Int64TensorType, StringTensorType
 
 
 def convert_dataframe_schema(df, drop=None):
@@ -41,14 +41,14 @@ def convert_sklearn_mlflow(clf, x_sample):
     return
 
 
-def convert_sklearn_onnx(clf, x_sample):
-    inputs = convert_dataframe_schema(x_sample)
-    onnx_model = convert_sklearn(clf, 'model_pipeline', inputs, target_opset=12)
+# def convert_sklearn_onnx(clf, x_sample):
+#     inputs = convert_dataframe_schema(x_sample)
+#     onnx_model = convert_sklearn(clf, 'model_pipeline', inputs, target_opset=12)
 
-    with open("model.onnx", "wb") as f:
-        f.write(onnx_model.SerializeToString())
+#     with open("model.onnx", "wb") as f:
+#         f.write(onnx_model.SerializeToString())
 
-    return onnx_model
+#     return onnx_model
 
 
 def onnx_input(x):
