@@ -27,8 +27,13 @@ def test_dataloader(adult_test_dataset):
     assert all(n_unique_categorical/x.shape[0] < 0.9)
 
 
-# def test_model_metrics(adult_test_dataset):
-#     # This test checks whether the serialized model obtains a specified performance on the hold out set
-#     # load data from pytest fixtures and serialized model
-#
-#     x, y, data_path = adult_test_dataset
+def test_model_metrics(adult_test_dataset):
+    x, y, data_path = adult_test_dataset
+    clf = joblib.load('./model.pkl')
+    predictions = clf.predict(x)
+    metrics = classification_report(y, predictions, output_dict=True)
+
+    assert len(np.unique(predictions)) > 1
+    assert metrics['>50K']['precision'] > 0.7  # fill here
+    assert metrics['>50K']['recall'] > 0.1  # fill here
+
