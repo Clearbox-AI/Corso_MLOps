@@ -11,6 +11,14 @@ Installa i requirements del repository e i pacchetti locali.
 $pip install -r requirements.txt
 $pip install -e .
 ```
+Allena il classificatore 'giocattolo' incluso nel repository, aggiungilo ai file versionati
+```sh
+$python ./model/model_training.py
+$git add ./model.pkl
+$git commit -m 'aggiunto modello'
+$git push
+```
+
 ## Creazione di un test
 Il file *tests/test_data_and_model.py* contiene un esempio di test scritto con pytest. Per far girare questi i test in local usa il comando
 ```sh
