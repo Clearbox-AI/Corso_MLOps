@@ -4,8 +4,8 @@
 Entra nella directory del repository e crea un nuovo virtual env. 
 ```sh
 $python3 -m venv ./venv_corso
-$source ./venv_corso/bin/activate (Linux)
-$.\venv_corso\Scripts\activate.bat (Windows cmd)
+$source ./venv_corso/bin/activate                        (Linux)
+$.\venv_corso\Scripts\activate.bat                 (Windows cmd)
 ```
 Installa i requirements del repository e i pacchetti locali.
 ```sh
