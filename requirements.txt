@@ -4,4 +4,3 @@ pytest
 pandas
 mlflow
 fastapi
-skl2onnx
