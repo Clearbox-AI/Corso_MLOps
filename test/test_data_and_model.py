@@ -1,0 +1,34 @@
+import pytest
+from sklearn.metrics import classification_report
+from data.datamanager import data_loader
+import joblib
+import numpy as np
+
+
+@pytest.fixture
+def adult_test_dataset():
+    path = './data/adult_test.csv'
+    x, y = data_loader(path)
+    return x, y, path
+
+
+def test_dataloader(adult_test_dataset):
+    # Test whether there are columns containing unique values within the cleaned dataset or whether there are
+    x, y, _ = adult_test_dataset
+
+    # perform unique count for each column of the dataframe
+    n_unique = x.nunique(axis=0).values
+
+    # perform unique count for each CATEGORICAL column of the dataframe
+    n_unique_categorical = np.array([x[i].nunique() for i in x.columns[x.dtypes == 'object']])
+
+    # Perform tests on unique counts
+    assert n_unique.min() > 1
+    assert all(n_unique_categorical/x.shape[0] < 0.9)
+
+
+# def test_model_metrics(adult_test_dataset):
+#     # This test checks whether the serialized model obtains a specified performance on the hold out set
+#     # load data from pytest fixtures and serialized model
+#
+#     x, y, data_path = adult_test_dataset
