@@ -5,3 +5,5 @@ pandas
 mlflow
 fastapi
 uvicorn
+dvc
+skl2onnx
