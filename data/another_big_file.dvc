@@ -1,4 +1,4 @@
 outs:
-- md5: d41d8cd98f00b204e9800998ecf8427e
-  size: 0
+- md5: e88aa56ddfb07993acfea9183c13cae7
+  size: 27
   path: another_big_file
