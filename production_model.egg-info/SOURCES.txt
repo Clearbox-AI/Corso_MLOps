@@ -1,0 +1,8 @@
+README.md
+setup.py
+production_model.egg-info/PKG-INFO
+production_model.egg-info/SOURCES.txt
+production_model.egg-info/dependency_links.txt
+production_model.egg-info/requires.txt
+production_model.egg-info/top_level.txt
+test/test_data_and_model.py
