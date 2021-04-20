@@ -1,0 +1,4 @@
+artifact_location: file:///home/manne/GitHub/Corso_MLOps/experiments/mlruns/0
+experiment_id: '0'
+lifecycle_stage: active
+name: Default
