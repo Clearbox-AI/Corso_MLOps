@@ -109,3 +109,43 @@ Prova a effettuare il setup di FastAPI per un modello da te selezionato. Questo 
 ```python
 class InputExample(BaseModel):
 ```
+
+## Deploy di un endpoint /predict su AWS EC2
+La cartella _/fastapi_ec2_ contiene tutto il codice necessario per questo esercizio, in particolare é presente un'applicazione 
+sviluppata con FastAPI e containerizzata con Docker, che espone un endpoint per effettuare predizioni (utilizzando un modello già allenato e _impacchettato_ con ClearBox Wrapper).
+
+Gli step da seguire per effettuare il deploy di questa applicazione su EC2 sono:
+
+1. Accedere alla propria console su AWS e selezionare "Avvia una macchina virtuale"
+2. Selezionare **Ubuntu Server 20.04 LTS** come immagine base per la propria istanza e proseguire
+![istance_AMI](images/AMI.png)
+1. Come tipo di istanza andremo ad utilizzare una _t2.large_
+2. Avanzare nelle schermate successive fino a quella relativa alla configurazione dei gruppi di sicurezza. Qui specificare una nuova regola in ingresso, in modo da permettere la ricezione di richieste custom TCP dall'esterno sulla porta 8000 della nostra macchina virtuale. L'altra regola abilitata di default (SSH sulla porta 22) ci permetterà invece di accedere da remoto alla nostra istanza
+![sec_group](images/security_group.png)
+5. A questo punto cliccare su _Analizza e avvia_ e in seguito su _Lancio_. Creare quindi una nuova coppia di chiavi con un nome da voi scelto, salvandola sul propio computer. A questo punto selezionando _Avvia le istanze_ avremo una nostra macchina virtuale su EC2
+6. Dalla schermata _Istanze_ (<https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Instances:>) si potrà vedere l'istanza appena creata con lo stato _In esecuzione_. Accedendo all'istanza e navigando nella sezione _Reti_ avrete a disposizione l'indirizzo IPv4 Pubblico della macchina, copiatelo perché verrà usato per accedere da remoto alla stessa.
+7. Aprite il terminale sul vostro PC e posizionatevi nella cartella dove avete precedentemente salvato la coppia di chiavi. Da qui assegnate permessi di esecuzione al file _.pem_ delle chiavi, usando il comando `chmod 400 nome_file_chiavi.pem`
+8. Ora potrete accedere tramite SSH alla vostra macchina in remoto, usando il comando `ssh -i nome_file_chiavi.pem ubuntu@IPv4_pubblico`
+9.  Una volta effettuato l'accesso si potrà installare Docker sull'istanza, usando i comandi:
+```
+sudo apt-get update
+sudo apt install docker.io
+```
+e lanciarlo con:
+```
+sudo service docker start
+
+```
+10. Per controllare che Docker sia stato installato correttamente potete lanciare il comando `sudo docker version`
+11. Ora non basterà che trasferire la cartella con l'applicazione sull'istanza EC2, buildarla usando Docker e infine lanciare le APIs. Per prima cosa bisogna copiare e incollare la cartella con l'applicazione da lanciare dove si trova la coppia di chiavi di AWS. Quindi basterà usare da terminale il comando:
+```
+scp -i nome_file_chiavi.pem -r ./hello.txt ubuntu@IPv4_pubblico:/home/ubuntu/app
+```
+per trasferire l'applicazione in remoto.
+12. Arrivati a questo punto potremo procedere con il lancio del container Docker. Ricollegandoci in SSH all'istanza EC2 e navigando nella cartella _/home/ubuntu/app_, bisognerà eseguire i seguenti comandi per avviare il container con la nostra applicazione FastAPI:
+```
+sudo docker build -t mymodel .
+sudo docker run --name myapp -p 8000:8000 mymodel conda run --no-capture-output -n wrapper_launcher uvicorn main:app --host 0.0.0.0 --port 8000
+```
+13. Accedendo da browser all'indirizzo pubblico della nostra istanza sulla porta 8000 al path /docs si potrà, infine, visitare la documentazione della nostra applicazione e provare il modello deployato
+![prediction](images/prediction.png)

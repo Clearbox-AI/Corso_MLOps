@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  clearbox-wrapper-launcher:
+    command: sh -c "conda run --no-capture-output -n wrapper_launcher uvicorn main:app --host 0.0.0.0 --port 8000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # x-aws-pull_credentials: your-arn-for-your-secret # <<<your arn for your secret you can get with docker ecs secret list>>>
+    # image: 634685489196.dkr.ecr.eu-central-1.amazonaws.com/cbw-launcher:latest # Replace your-docker-hub-username before deploying
+    ports:
+      - 8000:8000

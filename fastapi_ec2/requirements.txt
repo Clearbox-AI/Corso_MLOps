@@ -1,0 +1,10 @@
+clearbox-wrapper
+fastapi
+loguru
+numpy
+pandas
+pydantic
+six
+starlette
+typing
+uvicorn
