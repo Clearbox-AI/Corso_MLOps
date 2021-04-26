@@ -225,7 +225,7 @@ sudo service docker start
 10. Per controllare che Docker sia stato installato correttamente potete lanciare il comando `sudo docker version`
 11. Ora non basterà che trasferire la cartella con l'applicazione sull'istanza EC2, buildarla usando Docker e infine lanciare le APIs. Per prima cosa bisogna copiare e incollare la cartella con l'applicazione da lanciare dove si trova la coppia di chiavi di AWS. Quindi basterà usare da terminale il comando:
 ```
-scp -i nome_file_chiavi.pem -r ./hello.txt ubuntu@IPv4_pubblico:/home/ubuntu/app
+scp -i nome_file_chiavi.pem -r ./fastapi_ec2 ubuntu@IPv4_pubblico:/home/ubuntu/app
 ```
 per trasferire l'applicazione in remoto.
 12. Arrivati a questo punto potremo procedere con il lancio del container Docker. Ricollegandoci in SSH all'istanza EC2 e navigando nella cartella _/home/ubuntu/app_, bisognerà eseguire i seguenti comandi per avviare il container con la nostra applicazione FastAPI:
