@@ -15,7 +15,7 @@ Testare che la CLI sia configurata correttamente tramite il seguente comando.
 aws iam get-user
 ```
 
-##2. Operazioni su buckets S3 via Boto3
+## 2. Operazioni su buckets S3 via Boto3
 Installare boto3 via pip (*pip install boto3*). Eseguire il seguente script in Python per importarlo e controllare in quale regione si sta lavorando
 ```python
 import boto3
