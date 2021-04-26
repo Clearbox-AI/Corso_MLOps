@@ -1,3 +1,4 @@
+clearbox-wrapper
 scikit-learn
 numpy
 pytest

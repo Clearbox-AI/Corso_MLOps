@@ -7,6 +7,7 @@ import json
 import os
 import joblib
 from data.datamanager import data_loader
+import clearbox_wrapper as cbw
 
 
 def train_random_forest_model(data_path: str,
@@ -18,7 +19,7 @@ def train_random_forest_model(data_path: str,
             parameters = json.load(open("params.json", "r"))
         else:
             parameters = dict(n_estimators=100, max_depth=4, criterion='gini',
-                              min_sample_leaf=1)
+                              min_sample_leaf=10)
     print(parameters)
     x_training, y_training = data_loader(data_path)
 
@@ -47,7 +48,7 @@ def train_random_forest_model(data_path: str,
 
     # serialize model using joblib
     joblib.dump(rf_pipeline, 'model.pkl')
-
+    cbw.save_model('./model_cbw', rf_pipeline)
     return rf_pipeline
 
 
