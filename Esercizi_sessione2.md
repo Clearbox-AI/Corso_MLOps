@@ -191,7 +191,7 @@ def lambda_handler(event, context):
 Cambiamo i nomi dei bucket per il modello e per l'output e clicchiamo su Deploy.
 
 ### step 6: Test della funzione
-Tramite console o boto3 carichiamo il file batch_input.csv scaricato per l'esercizio 1 all'interno del bucket 'input-bucket-nomeservizio'. Attendiamo che venga creato il file predictions.csv nel bucket 'output-bucket-nomeservizio'.
+Tramite console o boto3 carichiamo il file input_batch.csv scaricato per l'esercizio 1 all'interno del bucket 'input-bucket-nomeservizio'. Attendiamo che venga creato il file predictions.csv nel bucket 'output-bucket-nomeservizio'.
 
 Sulla pagina della funzione possiamo cliccare sul tasto monitora per controllare il log di esecuzione tramite CloudWatch.
 
