@@ -34,16 +34,16 @@ s3_resource.Object('layerfiles-mlops-course', 'model.onnx').download_file('./mod
 s3_resource.Object('layerfiles-mlops-course', 'mlflow_model.zip').download_file('./mlflow_model.zip')
 s3_resource.Object('layerfiles-mlops-course', 'input_batch.csv').download_file('./input_batch.csv')
 ```
-Per creare un bucket
+Possiamo usate boto3 per creare un bucket
 ```python
 s3_resource.create_bucket(Bucket='nome-bucket', CreateBucketConfiguration={'LocationConstraint': 'eu-central-1'})
 ```
-Per fare l'upload di un file in un determinato bucket usare
+O per fare l'upload di un file in un determinato bucket usare
 ```python
 s3_resource.Object(bucket_name='nome_bucket', key='input_batch.csv').upload_file('./input_batch.csv')
 ```
 
-##3. Creazione di un servizio che effettui batch predictions tramite AWS lambda
+## 3. Creazione di un servizio che effettui batch predictions tramite AWS lambda
 
 In questo esercizio useremo il servizio AWS Lambda per far partire un batch predict ogni qualvolta un dataset venga uploadato in uno specifico bucket. 
 I risultati del batch predict verranno uploadati in un bucket separato
