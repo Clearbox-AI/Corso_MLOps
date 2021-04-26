@@ -247,7 +247,7 @@ Il deploy di un modello richiede il push di un'immagine mlflow sull'Elastic Cont
 ```sh
 mlflow sagemaker build-and-push-container
 ```
-E' suffience avere nel registro una sola immagine per organizzazione. Una volta effettuato il push di tale immagine e' possibile fare il deploy di un nuovo modello tramite il seguente script
+E' sufficience avere nel registro ECR una sola immagine per organizzazione. Una volta effettuato il push di tale immagine e' possibile fare il deploy di un nuovo modello tramite il seguente script
 ```python
 import mlflow.sagemaker as mfs
 
