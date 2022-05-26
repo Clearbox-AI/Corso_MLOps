@@ -179,7 +179,7 @@ def lambda_handler(event, context):
         sess = rt.InferenceSession('/tmp/model.onnx')
         
         onnx_outputs = sess.run(None, process_inputs(x))
-        pd.DataFrame(onnx_outputs[1]).to_csv(csv_buffer)
+        pd.DataFrame(onnx_outputs[1]).to_csv(csv_buffer, index=False)
         s3_resource.Object(bucket_name='output-nomeservizio', key='predictions.csv').put(Body=csv_buffer.getvalue())        
         
         return response['ContentType']
