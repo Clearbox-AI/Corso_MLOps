@@ -8,3 +8,5 @@ fastapi
 uvicorn
 dvc
 skl2onnx
+fastapi 
+uvicorn[standard]
