@@ -101,7 +101,7 @@ La cartella /app contiene un esempio di utilizzo di FastAPI per il serving di un
 
 Per fare partire l'app entra nella cartella app e usa il comando
 ```sh
-$uvicorn main:app
+$python3 -m uvicorn main:app
 ```
 L'API dovrebbe essere servita localmente alla porta 8000. L'indirizzo (localhost:8000/docs) contiene un sommario degli endopoint disponibili e permette di effettuare query di prova.
 
