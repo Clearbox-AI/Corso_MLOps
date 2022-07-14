@@ -1,0 +1,5 @@
+# to be ignored for test Clearbox - Dropper 14/07/22
+CorsoEnv/
+data/__pycache__/
+model_cbw.zip
+production_model.egg-info/
