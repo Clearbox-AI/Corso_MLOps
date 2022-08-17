@@ -117,7 +117,7 @@ Utilizziamo l'opzione usa un piano (use a blueprint) e scegliamo s3-get-object-p
 Nelle informazioni di base scegliamo il nome 'batch-lambda-nomeservizio' specificando di usare un ruolo esistente scegliendo 'batch-lambda-nomeservizio-role'. 
 La funzione lambda e' adesso autorizzata ad accere ai buckets creati per l'esercizio. 
 
-Sotto trigger S3 selezionia,p il bucket creato prima 'input-bucket-nomeservizio'.
+Sotto trigger S3 selezioniamo il bucket creato prima 'input-bucket-nomeservizio'.
 
 Clicchiamo su crea funzione.
 
