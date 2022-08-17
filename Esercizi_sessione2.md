@@ -178,17 +178,17 @@ def lambda_handler(event, context):
         tmsp = str(int(datetime.datetime.timestamp(datetime.datetime.now())))
 
         print("CONTENT TYPE: " + response['ContentType'])
-        s3_resource.Object('model-python-biella', 'model.onnx').download_file('/tmp/model.onnx')
+        s3_resource.Object('model-python-nomeservizio', 'model.onnx').download_file('/tmp/model.onnx')
         sess = rt.InferenceSession('/tmp/model.onnx')
         
 
         onnx_outputs = sess.run(None, process_inputs(x))
         
         pd.DataFrame(onnx_outputs[1]).to_csv(csv_buffer, index=False)
-        s3_resource.Object(bucket_name='output-python-biella', key='predictions'+tmsp+'.csv').put(Body=csv_buffer.getvalue())        
+        s3_resource.Object(bucket_name='output-python-nomeservizio', key='predictions'+tmsp+'.csv').put(Body=csv_buffer.getvalue())        
         
         x.to_csv(csv_buffer, index=False)
-        s3_resource.Object(bucket_name='output-python-biella', key='batch'+tmsp+'.csv').put(Body=csv_buffer.getvalue())        
+        s3_resource.Object(bucket_name='output-python-nomeservizio', key='batch'+tmsp+'.csv').put(Body=csv_buffer.getvalue())        
 
         return response['ContentType']
     except Exception as e:
